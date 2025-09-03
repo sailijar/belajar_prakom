@@ -52,8 +52,8 @@
                                     ?>
                                     <tr>
                                         <th scope="row"><?= $no++ ?></th>
-                                        <td><?= $row['Nama_pasienKlinik'] ?></td>
-                                        <td><?= $row['Tanggal_LahirPasien'] ?></td>
+                                        <td><?= $row['Nama_pasienKlinik'] ?></td>  
+                                        <td><?= date('d-M-Y',strtotime( $row['Tanggal_LahirPasien'])) ?></td>
                                         <td><?= $row['Jenis_KelaminPasien'] ?></td>
                                         <td><?= $row['Alamat_Pasien'] ?></td>
                                         <td>

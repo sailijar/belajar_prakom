@@ -16,7 +16,7 @@
     <div class="container">
         <!-- disini kontennya -->
         <div class="row">
-            <div class="col-10 m-auto mt-5">
+            <div class="col-7 m-auto mt-5">
                 <div class="card">
                     <div class="card-header">
                         <b> Data Poli</b>
