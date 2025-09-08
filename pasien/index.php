@@ -22,7 +22,7 @@
                         <b> Data Pasien</b>
                     </div>
                     <div class="card-body">
-                        <a href="" class="btn btn-primary mb-3">Tambah Data</a>
+                        <a href="form.php" class="btn btn-primary mb-3">Tambah Data</a>
                         <table class="table">
                             <thead>
                                 <tr class="table-primary">
