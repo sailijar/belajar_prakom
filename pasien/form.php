@@ -21,7 +21,7 @@ include "../navbar.php";
                         <b>Form Tambah Data Pasien</b>
                     </div>
                     <div class="card-body">
-                <form method="get" action="proses_form.php">
+                <form method="post" action="proses_form.php">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Nama Pasien</label>
                         <input name="nama" placeholder="Masukkan nama Lengkap" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

@@ -49,16 +49,43 @@
 
                                 #4 melakukan looping data pasien
                                 foreach ($result as $row) {
-                                    ?>
+                                    $tgl_lahir = date_create($row['Tanggal_LahirPasien']);
+                                    $tgl_lahir = date_format($tgl_lahir, 'D, d F Y')
+                                        ?>
                                     <tr>
                                         <th scope="row"><?= $no++ ?></th>
-                                        <td><?= $row['Nama_pasienKlinik'] ?></td>  
-                                        <td><?= date('d-M-Y',strtotime( $row['Tanggal_LahirPasien'])) ?></td>
+                                        <td><?= $row['Nama_pasienKlinik'] ?></td>
+                                        <td><?= $tgl_lahir ?></td>
                                         <td><?= $row['Jenis_KelaminPasien'] ?></td>
                                         <td><?= $row['Alamat_Pasien'] ?></td>
                                         <td>
                                             <a href="" class="btn btn-primary">Edit</a>
-                                            <a href="" class="btn btn-danger">Hapus</a>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal<?= $row['PasienKlinik_ID'] ?>">
+                                                Hapus
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal<?= $row['PasienKlinik_ID'] ?>" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Peringatan
+                                                            </h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Yakin data pasien <b> <?= $row['Nama_pasienKlinik'] ?> </b> ingin di hapus ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-bs-dismiss="modal">Batal</button>
+                                                            <a href="hapus.php?id=<?=$row['PasienKlinik_ID'] ?>" class="btn btn-danger">Hapus</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     <?php
