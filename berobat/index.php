@@ -16,17 +16,17 @@
     <div class="container">
         <!-- disini kontennya -->
         <div class="row">
-            <div class="col-10 m-auto mt-5">
+            <div class="col-12 m-auto mt-5">
                 <div class="card">
                     <div class="card-header">
                         <b>Data Berobat</b>
                     </div>
                     <div class="card-body">
-                        <a href="form.php" class="btn btn-primary">Tambah Data</a>
+                        <a href="form.php" class="btn btn-primary">Add New</a>
                         <table class="table mt-3 table-striped ">
                             <thead>
                                 <tr class="table-success">
-                                    <th scope="col">No</th>
+                                    <th scope="col">No Transaksi</th>
                                     <th scope="col">Tanggal Berobat</th>
                                     <th scope="col">Nama Pasien</th>
                                     <th scope="col">Nama Poli</th>
@@ -44,14 +44,14 @@
                                 #2. query join tabel berobat, pasien, dokter, poli
                                 $qry = "SELECT berobat.No_Transaksi,pasien.Nama_pasienKlinik,poli.Nama_Poli,berobat.Tanggal_Berobat,dokter.Nama_Dokter,berobat.Keluhan_Pasien,berobat.Biaya_Adm FROM berobat
                                 INNER JOIN pasien ON berobat.PasienKlinik_ID = pasien.PasienKlinik_ID INNER JOIN dokter ON berobat.Dokter_ID = dokter.Dokter_ID
-                                INNER JOIN poli ON berobat.Poli_ID = poli.Poli_ID";
+                                INNER JOIN poli ON dokter.Poli_ID = poli.Poli_ID";
 
 
                                 #3. menjalankan query
                                 $result = mysqli_query($koneksi, $qry);
 
                                 #4. melakukan looping data pasien
-                                $nomor = 1;
+                                // $nomor = 1;
                                 $bulanIndo = [
                                     '01' => 'Januari',
                                     '02' => 'Februari',
@@ -73,9 +73,10 @@
                                     $thn = date('Y', strtotime($row['Tanggal_Berobat']));
                                     ?>
                                     <tr>
-                                        <th scope="row"><?= $nomor++ ?></th>
-                                        <td><?= $tgl . ' ' . $bulanIndo[$bln] . ' ' . $thn ?></td>
-                                        <td><?= $row['Nama_pasienKlinik'] ?></td>  
+                                        <!-- <th scope="row"><?= $nomor++ ?></th> -->
+                                         <td><?= $row['No_Transaksi'] ?></td>
+                                        <td><?= $tgl . ' ' . $bulanIndo[$bln] . ' ' . $thn ?></td>  
+                                        <td><?= $row['Nama_pasienKlinik'] ?></td> 
                                         <td><?= $row['Nama_Poli'] ?></td>   
                                         <td><?= $row['Nama_Dokter'] ?></td>
                                         <td><?= $row['Keluhan_Pasien'] ?></td>

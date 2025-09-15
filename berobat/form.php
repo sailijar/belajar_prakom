@@ -20,14 +20,21 @@
                     <div class="card-body">
                         <form method="post" action="proses_form.php">
                             <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">No Transaksi</label>
+                                <input name="trans" type="text" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-3">
                                 <label class="form-label">Nama Pasien</label>
-                                <select name="nama" class="form-select" required>
+                                <select name="pasien" class="form-select" required>
                                     <option value="" selected disabled>Pilih Pasien</option>
                                     <?php
                                     include('../koneksi.php');
-                                    $pasien = mysqli_query($koneksi, "SELECT PasienKlinik_ID, Nama_pasienKlinik FROM pasien");
-                                    foreach ($pasien as $p) {
-                                        echo "<option value='{$p['PasienKlinik_ID']}'>{$p['Nama_pasienKlinik']}</option>";
+                                    $qry = mysqli_query($koneksi, "SELECT * FROM pasien");
+                                    foreach ($qry as $row) {
+                                        ?>
+                                        <option value="<?= $row['PasienKlinik_ID'] ?>"><?= $row['Nama_pasienKlinik'] ?></option>
+                                        <?php
                                     }
                                     ?>
                                 </select>
@@ -81,20 +88,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Poli</label>
-                                <select name="poli" class="form-select" required>
-                                    <option value="" selected disabled>Pilih Poli</option>
-                                    <?php
-                                    $dokter = mysqli_query($koneksi, "SELECT Poli_ID, Nama_Poli FROM poli");
-                                    foreach ($poli as $d) {
-                                        echo "<option value='{$d['Poli_ID']}'>{$d['Nama_Poli']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </div>
-         
                             <div class="mb-3">
                                 <label class="form-label">Dokter</label>
                                 <select name="dokter" class="form-select" required>
@@ -113,7 +106,7 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Biaya Administrasi</label>
-                                <input type="number" name="biaya_adm" class="form-control" required>
+                                <input type="number" name="biaya" class="form-control" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Simpan</button>
                             <a href="index.php" class="btn btn-secondary">Kembali</a>
