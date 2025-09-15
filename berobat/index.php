@@ -29,6 +29,7 @@
                                     <th scope="col">No Transaksi</th>
                                     <th scope="col">Tanggal Berobat</th>
                                     <th scope="col">Nama Pasien</th>
+                                    <th scope="col">Usia</th>
                                     <th scope="col">Nama Poli</th>
                                     <th scope="col">Nama Dokter</th>
                                     <th scope="col">Keluhan Pasien</th>
@@ -42,7 +43,7 @@
                                 include('../koneksi.php');
 
                                 #2. query join tabel berobat, pasien, dokter, poli
-                                $qry = "SELECT berobat.No_Transaksi,pasien.Nama_pasienKlinik,poli.Nama_Poli,berobat.Tanggal_Berobat,dokter.Nama_Dokter,berobat.Keluhan_Pasien,berobat.Biaya_Adm FROM berobat
+                                $qry = "SELECT * FROM berobat
                                 INNER JOIN pasien ON berobat.PasienKlinik_ID = pasien.PasienKlinik_ID INNER JOIN dokter ON berobat.Dokter_ID = dokter.Dokter_ID
                                 INNER JOIN poli ON dokter.Poli_ID = poli.Poli_ID";
 
@@ -71,13 +72,18 @@
                                     $tgl = date('d', strtotime($row['Tanggal_Berobat']));
                                     $bln = date('m', strtotime($row['Tanggal_Berobat']));
                                     $thn = date('Y', strtotime($row['Tanggal_Berobat']));
+                                    // Hitung usia
+                                    $birthDate = new DateTime($row['Tanggal_LahirPasien']);
+                                    $today = new DateTime(); // hari ini
+                                    $usia = $birthDate->diff($today)->y;
                                     ?>
                                     <tr>
                                         <!-- <th scope="row"><?= $nomor++ ?></th> -->
-                                         <td><?= $row['No_Transaksi'] ?></td>
-                                        <td><?= $tgl . ' ' . $bulanIndo[$bln] . ' ' . $thn ?></td>  
-                                        <td><?= $row['Nama_pasienKlinik'] ?></td> 
-                                        <td><?= $row['Nama_Poli'] ?></td>   
+                                        <td><?= $row['No_Transaksi'] ?></td>
+                                        <td><?= $tgl . ' ' . $bulanIndo[$bln] . ' ' . $thn ?></td>
+                                        <td><?= $row['Nama_pasienKlinik'] ?></td>
+                                        <td><?= $usia ?> Tahun</td>
+                                        <td><?= $row['Nama_Poli'] ?></td>
                                         <td><?= $row['Nama_Dokter'] ?></td>
                                         <td><?= $row['Keluhan_Pasien'] ?></td>
                                         <td><?= number_format($row['Biaya_Adm'], 0, ',', '.') ?></td>
@@ -89,8 +95,8 @@
                                                 Hapus
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal<?= $row['No_Transaksi'] ?>" tabindex="-1"
-                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal<?= $row['No_Transaksi'] ?>"
+                                                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
