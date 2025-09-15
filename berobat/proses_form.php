@@ -6,6 +6,7 @@ include("../koneksi.php");
 #2. mengambil value dari setiap input
 $id = $_POST['idedit'];
 $pasien_id = $_POST["nama"];
+$poli_id = $_POST["poli"];
 $dokter_id = $_POST["dokter"];
 $keluhan = $_POST["keluhan"];
 $biaya_adm = $_POST["biaya_adm"];
@@ -27,9 +28,9 @@ if (strtotime($Tgl_Berobat) > strtotime(date('Y-m-d'))) {
 
 #3. menuliskan query tambah data ke tabel
 $qry = mysqli_query($koneksi, "INSERT INTO berobat 
-    (PasienKlinik_ID, Dokter_ID, Tanggal_Berobat, Keluhan_Pasien, Biaya_Adm) 
+    (PasienKlinik_ID, Poli_ID, Dokter_ID, Tanggal_Berobat, Keluhan_Pasien, Biaya_Adm) 
     VALUES 
-    ('$pasien_id', '$dokter_id', '$Tgl_Berobat', '$keluhan', '$biaya_adm')"
+    ('$pasien_id', '$poli_id', '$dokter_id', '$Tgl_Berobat', '$keluhan', '$biaya_adm')"
 );
 
 #5. pengalihan halaman jika proses tambah selesai

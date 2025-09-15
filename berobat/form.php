@@ -81,6 +81,19 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Poli</label>
+                                <select name="poli" class="form-select" required>
+                                    <option value="" selected disabled>Pilih Poli</option>
+                                    <?php
+                                    $dokter = mysqli_query($koneksi, "SELECT Poli_ID, Nama_Poli FROM poli");
+                                    foreach ($poli as $d) {
+                                        echo "<option value='{$d['Poli_ID']}'>{$d['Nama_Poli']}</option>";
+                                    }
+                                    ?>
+                                </select>
+                            </div>
          
                             <div class="mb-3">
                                 <label class="form-label">Dokter</label>

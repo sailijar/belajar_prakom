@@ -15,6 +15,7 @@ $row = mysqli_fetch_array($qry);
 
 // Ambil data relasi
 $pasien_id = $row["PasienKlinik_ID"];
+$poli_id = $row["Poli_ID"];
 $dokter_id = $row["Dokter_ID"];
 $keluhan = $row["Keluhan_Pasien"];
 $biaya_adm = $row["Biaya_Adm"];
@@ -97,6 +98,19 @@ $tahun = date('Y', strtotime($row["Tanggal_Berobat"]));
                                     </select>
                                 </div>
                             </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Poli</label>
+                            <select name="poli_id" class="form-select" required>
+                                <option value="" disabled>Pilih Poli</option>
+                                <?php
+                                $dokter = mysqli_query($koneksi, "SELECT Poli_ID, Nama_Poli FROM poli");
+                                foreach ($dokter as $d) {
+                                    $selected = ($poli_id == $d['Poli_ID']) ? 'selected' : '';
+                                    echo "<option value='{$d['Poli_ID']}' $selected>{$d['Nama_Poli']}</option>";
+                                }
+                                ?>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Dokter</label>

@@ -19,7 +19,7 @@
             <div class="col-10 m-auto mt-5">
                 <div class="card">
                     <div class="card-header">
-                        <b>Data Pasien</b>
+                        <b>Data Berobat</b>
                     </div>
                     <div class="card-body">
                         <a href="form.php" class="btn btn-primary">Tambah Data</a>
@@ -27,8 +27,9 @@
                             <thead>
                                 <tr class="table-success">
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama Pasien</th>
                                     <th scope="col">Tanggal Berobat</th>
+                                    <th scope="col">Nama Pasien</th>
+                                    <th scope="col">Nama Poli</th>
                                     <th scope="col">Nama Dokter</th>
                                     <th scope="col">Keluhan Pasien</th>
                                     <th scope="col">Biaya Administrasi</th>
@@ -41,9 +42,9 @@
                                 include('../koneksi.php');
 
                                 #2. query join tabel berobat, pasien, dokter, poli
-                                $qry = "SELECT berobat.No_Transaksi,pasien.Nama_pasienKlinik,berobat.Tanggal_Berobat,dokter.Nama_Dokter,poli.Nama_Poli,berobat.Keluhan_Pasien,berobat.Biaya_Adm FROM berobat
+                                $qry = "SELECT berobat.No_Transaksi,pasien.Nama_pasienKlinik,poli.Nama_Poli,berobat.Tanggal_Berobat,dokter.Nama_Dokter,berobat.Keluhan_Pasien,berobat.Biaya_Adm FROM berobat
                                 INNER JOIN pasien ON berobat.PasienKlinik_ID = pasien.PasienKlinik_ID INNER JOIN dokter ON berobat.Dokter_ID = dokter.Dokter_ID
-                                INNER JOIN poli ON dokter.Poli_ID = poli.Poli_ID";
+                                INNER JOIN poli ON berobat.Poli_ID = poli.Poli_ID";
 
 
                                 #3. menjalankan query
@@ -73,8 +74,9 @@
                                     ?>
                                     <tr>
                                         <th scope="row"><?= $nomor++ ?></th>
-                                        <td><?= $row['Nama_pasienKlinik'] ?></td>
                                         <td><?= $tgl . ' ' . $bulanIndo[$bln] . ' ' . $thn ?></td>
+                                        <td><?= $row['Nama_pasienKlinik'] ?></td>  
+                                        <td><?= $row['Nama_Poli'] ?></td>   
                                         <td><?= $row['Nama_Dokter'] ?></td>
                                         <td><?= $row['Keluhan_Pasien'] ?></td>
                                         <td><?= number_format($row['Biaya_Adm'], 0, ',', '.') ?></td>

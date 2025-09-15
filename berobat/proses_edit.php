@@ -6,6 +6,7 @@ include("../koneksi.php");
 #2. mengambil value dari setiap input
 $id = $_POST["idedit"];
 $pasien_id = $_POST["nama"];
+$poli_id = $_POST["poli_id"];
 $dokter_id = $_POST["dokter_id"];
 $keluhan = $_POST["keluhan"];
 $biaya_adm = $_POST["biaya_adm"];
@@ -23,6 +24,7 @@ if (strtotime($tanggal_berobat) > strtotime(date('Y-m-d'))) {
 #3. menuliskan query tambah data ke tabel
 $qry = mysqli_query($koneksi, "UPDATE berobat SET 
     PasienKlinik_ID='$pasien_id', 
+    Poli_ID='$poli_id',
     Dokter_ID='$dokter_id', 
     Tanggal_Berobat='$tanggal_berobat', 
     Keluhan_Pasien='$keluhan', 

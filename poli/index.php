@@ -8,7 +8,7 @@
     <title>Klinik</title>
 </head>
 
-<body>
+<body style="background-color: #EFF5D2;">
     <?php
     include "../navbar.php";
     ?>
