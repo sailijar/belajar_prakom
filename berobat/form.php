@@ -33,7 +33,8 @@
                                     $qry = mysqli_query($koneksi, "SELECT * FROM pasien");
                                     foreach ($qry as $row) {
                                         ?>
-                                        <option value="<?= $row['PasienKlinik_ID'] ?>"><?= $row['Nama_pasienKlinik'] ?></option>
+                                        <option value="<?= $row['PasienKlinik_ID'] ?>"><?= $row['Nama_pasienKlinik'] ?>
+                                        </option>
                                         <?php
                                     }
                                     ?>
@@ -41,50 +42,50 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label">Tanggal Berobat</label>
+                                <label for="exampleInputEmail1" class="form-label">Tanggal Berobat</label>
                                 <div class="row">
-                                    <div class="col">
-                                        <select name="tgl" class="form-select" required>
-                                            <option value="" selected disabled>Tanggal</option>
-                                            <?php for ($i = 1; $i <= 31; $i++) { ?>
-                                                <option value="<?= str_pad($i, 2, '0', STR_PAD_LEFT) ?>"><?= $i ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col">
-                                        <select name="bln" class="form-select" required>
-                                            <option value="" selected disabled>Bulan</option>
+                                    <div class="col-4">
+                                        <select class="form-control" name="tgl" id="">
+                                            <option value="">Pilih Tanggal</option>
                                             <?php
-                                            $bulan = [
-                                                '01' => 'Januari',
-                                                '02' => 'Februari',
-                                                '03' => 'Maret',
-                                                '04' => 'April',
-                                                '05' => 'Mei',
-                                                '06' => 'Juni',
-                                                '07' => 'Juli',
-                                                '08' => 'Agustus',
-                                                '09' => 'September',
-                                                '10' => 'Oktober',
-                                                '11' => 'November',
-                                                '12' => 'Desember'
-                                            ];
-                                            foreach ($bulan as $num => $nama) {
-                                                echo "<option value='$num'>$nama</option>";
+                                            for ($i = 1; $i <= 31; $i++) {
+                                                ?>
+                                                <option value="<?= $i ?>"><?= $i ?></option>
+                                                <?php
                                             }
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="col">
-                                        <select name="thn" class="form-select" required>
-                                            <option value="" selected disabled>Tahun</option>
+                                    <div class="col-4">
+                                        <select class="form-control" name="bln" id="">
+                                            <option value="">Pilih Bulan</option>
                                             <?php
-                                            $tahunSekarang = date('Y');
-                                            for ($thn = $tahunSekarang; $thn >= $tahunSekarang - 50; $thn--) {
-                                                echo "<option value='$thn'>$thn</option>";
+                                            $bulan = array(
+                                                1 => 'Januari',
+                                                2 => 'Februari',
+                                                3 => 'Maret',
+                                                4 => 'April',
+                                                5 => 'Mei',
+                                                6 => 'Juni',
+                                                7 => 'Juli',
+                                                8 => 'Agustus',
+                                                9 => 'September',
+                                                10 => 'Oktober',
+                                                11 => 'November',
+                                                12 => 'Desember'
+                                            );
+
+                                            foreach ($bulan as $k => $v) {
+                                                ?>
+                                                <option value="<?= $k ?>"><?= $v ?></option>
+                                                <?php
                                             }
                                             ?>
                                         </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="number" class="form-control" name="thn"
+                                            placeholder="Masukkan Tahun" id="">
                                     </div>
                                 </div>
                             </div>

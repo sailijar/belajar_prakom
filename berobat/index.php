@@ -52,41 +52,32 @@
                                 $result = mysqli_query($koneksi, $qry);
 
                                 #4. melakukan looping data pasien
-                                // $nomor = 1;
-                                $bulanIndo = [
-                                    '01' => 'Januari',
-                                    '02' => 'Februari',
-                                    '03' => 'Maret',
-                                    '04' => 'April',
-                                    '05' => 'Mei',
-                                    '06' => 'Juni',
-                                    '07' => 'Juli',
-                                    '08' => 'Agustus',
-                                    '09' => 'September',
-                                    '10' => 'Oktober',
-                                    '11' => 'November',
-                                    '12' => 'Desember'
-                                ];
                                 foreach ($result as $row) {
-                                    // Pisahkan tanggal, bulan, tahun
-                                    $tgl = date('d', strtotime($row['Tanggal_Berobat']));
-                                    $bln = date('m', strtotime($row['Tanggal_Berobat']));
-                                    $thn = date('Y', strtotime($row['Tanggal_Berobat']));
-                                    // Hitung usia
-                                    $birthDate = new DateTime($row['Tanggal_LahirPasien']);
-                                    $today = new DateTime(); // hari ini
-                                    $usia = $birthDate->diff($today)->y;
-                                    ?>
+                                    //memformat ulang tanggal berobat
+                                    $tgl_berobat = date_create($row['Tanggal_Berobat']);
+                                    $tgl_berobat = date_format($tgl_berobat, 'd/m/Y');
+
+                                    //membuat usia pasien
+                                    $tanggal_lahir = new DateTime($row['Tanggal_LahirPasien']);
+                                    $sekarang = new DateTime("today");
+                                    $usia = $sekarang->diff($tanggal_lahir)->y;
+
+                                    //memformat biaya menjadi rupiah dan ada pemisah ribuan
+                                    $biaya_adm = $row['Biaya_Adm'];
+                                    $biaya_adm = number_format($biaya_adm,0,',','.');
+                                    ?> 
+
+                                    
                                     <tr>
                                         <!-- <th scope="row"><?= $nomor++ ?></th> -->
                                         <td><?= $row['No_Transaksi'] ?></td>
-                                        <td><?= $tgl . ' ' . $bulanIndo[$bln] . ' ' . $thn ?></td>
+                                        <td><?= $tgl_berobat ?></td>
                                         <td><?= $row['Nama_pasienKlinik'] ?></td>
-                                        <td><?= $usia ?> Tahun</td>
+                                        <td><?= $usia ?></td>
                                         <td><?= $row['Nama_Poli'] ?></td>
                                         <td><?= $row['Nama_Dokter'] ?></td>
                                         <td><?= $row['Keluhan_Pasien'] ?></td>
-                                        <td><?= number_format($row['Biaya_Adm'], 0, ',', '.') ?></td>
+                                        <td>Rp <?= $biaya_adm ?></td>
                                         <td>
                                             <a href="edit.php?id=<?= $row['No_Transaksi'] ?>"
                                                 class="btn btn-info btn-sm">edit</a>
