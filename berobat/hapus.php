@@ -8,7 +8,7 @@ include("../koneksi.php");
 $id = $_GET["id"];
 
 #3. menjalankan query hapus
-$qry = mysqli_query($koneksi,"DELETE FROM dokter WHERE Dokter_ID = '$id'");
+$qry = mysqli_query($koneksi,"DELETE FROM berobat WHERE No_Transaksi = '$id'");
 
 #4. mengalihkan halaman jika sudah terhapus
 header("location:index.php");

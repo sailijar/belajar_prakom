@@ -23,7 +23,7 @@
             Laporan
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">List Pasien</a></li>
+            <li><a class="dropdown-item" href="/belajar_prakom/laporan/laporan_pasien.php">List Pasien</a></li>
             <li><a class="dropdown-item" href="#">List Doktor</a></li>
             <li><a class="dropdown-item" href="#">List Data Berobat</a></li>
           </ul>
