@@ -9,20 +9,17 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #EFF5D2;">
-    <?php
-    include('../navbar.php');
-    ?>
-    <div class="container">
+<body onload="window.print()" style="background-color: #EFF5D2;">
+
+    <div class="field-container">
         <!-- disini kontennya -->
         <div class="row">
             <div class="col-12 m-auto mt-5">
                 <div class="card">
-                    <div class="card-header">
-                        <b>Data Berobat</b>
-                    </div>
+                    
                     <div class="card-body">
-                        <a href="cetak.php" target="_blank" class="btn btn-primary">Print</a>
+                        <h1 class="text-center">Laporan Data Berobat</h1>
+                        <br>
                         <table class="table mt-3 table-striped ">
                             <thead>
                                 <tr class="table-success">
